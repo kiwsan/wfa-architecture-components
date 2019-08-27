@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -19,12 +20,14 @@ namespace WinFormsApp
             {
                 if (this.SearchBoxComponent.CancellationPending)
                 {
+                    e.Cancel = this.SearchBoxComponent.CancellationPending;
+
                     break;
                 }
 
                 this.SearchBoxComponent.ReportProgress(i + 1, param);
 
-                Thread.Sleep(50);
+                Thread.Sleep(TimeSpan.FromSeconds(5));
             }
         }
 
